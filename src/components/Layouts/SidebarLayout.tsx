@@ -8,10 +8,14 @@ interface SidebarLayoutProps {
 
 export function SidebarLayout({ children }: SidebarLayoutProps) {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <LeftSidebar />
       <CategorySidebar />
-      <main className="flex-1 overflow-auto">{children}</main>
+      <main className="flex-1 overflow-auto w-full max-w-full">
+        <div className="container mx-auto px-4 md:px-6 max-w-full">
+          {children}
+        </div>
+      </main>
     </div>
   );
 }

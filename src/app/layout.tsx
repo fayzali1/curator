@@ -36,7 +36,7 @@ export default function RootLayout({
         >
           <SidebarProvider>
             <ThemeProvider>
-              <main>{children}</main>
+              <main className="w-full max-w-full">{children}</main>
               <Toaster />
             </ThemeProvider>
           </SidebarProvider>
