@@ -4,7 +4,6 @@ import { Toaster } from "@/components/ui/toaster";
 import ThemeProvider from "@/app/theme-provider";
 import localFont from "next/font/local";
 import { ClerkProvider } from "@clerk/nextjs";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -34,12 +33,10 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen font-sans`}
         >
-          <SidebarProvider>
-            <ThemeProvider>
-              <main className="w-full max-w-full">{children}</main>
-              <Toaster />
-            </ThemeProvider>
-          </SidebarProvider>
+          <ThemeProvider>
+            <main className="w-full max-w-full">{children}</main>
+            <Toaster />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
