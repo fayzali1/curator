@@ -17,6 +17,10 @@ html[data-overscroll="white"] {
   --page-overscroll-color: #faf8f5;
 }
 
+html[data-overscroll="white"].dark {
+  --page-overscroll-color: #1a1a1a;
+}
+
 /* For modern browsers */
 .hideScrollBar {
   scrollbar-width: none; /* For Firefox */
@@ -39,6 +43,11 @@ html[data-overscroll="white"] {
 
 @layer base {
   :root {
+    /* White and Black with dark mode support */
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+
+    /* Base colors */
     --background: 40 30% 96%; /* #faf8f5 */
     --foreground: 222 47% 11%; /* #0f172a */
     --card: 0 0% 100%; /* white */
@@ -58,12 +67,18 @@ html[data-overscroll="white"] {
     --border: 220 13% 91%; /* similar to gray-100 */
     --input: 240 5.9% 90%;
     --ring: 222 47% 11%; /* #0f172a */
+
+    /* Chart colors */
     --chart-1: 173 58% 39%;
     --chart-2: 12 76% 61%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* Radius */
     --radius: 0.5rem;
+
+    /* Sidebar colors */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 222 47% 11%; /* #0f172a */
@@ -72,41 +87,112 @@ html[data-overscroll="white"] {
     --sidebar-accent-foreground: 0 0% 100%; /* white */
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Gray palette - used extensively in the UI */
+    --gray-50: 0 0% 98%; /* #fafafa */
+    --gray-100: 220 13% 91%; /* #f3f4f6 */
+    --gray-200: 220 13% 91%; /* #e5e7eb */
+    --gray-300: 216 12% 84%; /* #d1d5db */
+    --gray-400: 218 11% 65%; /* #9ca3af */
+    --gray-500: 220 9% 46%; /* #6b7280 */
+    --gray-600: 215 14% 34%; /* #4b5563 */
+    --gray-700: 217 19% 27%; /* #374151 */
+    --gray-800: 215 28% 17%; /* #1f2937 */
+    --gray-900: 222 47% 11%; /* #111827 */
+
+    /* Badge colors */
+    --blue-50: 214 100% 97%; /* #eff6ff */
+    --blue-100: 214 95% 93%; /* #dbeafe */
+    --blue-600: 217 91% 60%; /* #2563eb */
+
+    --teal-50: 166 76% 97%; /* #f0fdfa */
+    --teal-100: 167 85% 89%; /* #ccfbf1 */
+    --teal-600: 162 64% 42%; /* #0d9488 */
+
+    --emerald-50: 152 81% 96%; /* #ecfdf5 */
+    --emerald-100: 149 80% 90%; /* #d1fae5 */
+    --emerald-600: 156 72% 45%; /* #059669 */
+
+    --purple-50: 270 100% 98%; /* #faf5ff */
+    --purple-100: 269 100% 94%; /* #f3e8ff */
+    --purple-600: 271 91% 65%; /* #9333ea */
+    --purple-800: 271 81% 55%; /* For dark mode consistency */
+    --purple-900: 271 91% 35%; /* For dark mode consistency */
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    /* White and Black - inverted in dark mode */
+    --white: 0 0% 12%; /* Very dark gray instead of white */
+    --black: 0 0% 95%; /* Very light gray instead of black */
+
+    /* Base colors */
+    --background: 240 10% 3.9%; /* #09090b */
+    --foreground: 0 0% 98%; /* #fafafa */
+    --card: 240 10% 3.9%; /* #09090b */
+    --card-foreground: 0 0% 98%; /* #fafafa */
+    --popover: 240 10% 3.9%; /* #09090b */
+    --popover-foreground: 0 0% 98%; /* #fafafa */
+    --primary: 0 0% 98%; /* #fafafa */
+    --primary-foreground: 240 5.9% 10%; /* #18181b */
+    --secondary: 240 3.7% 15.9%; /* #27272a */
+    --secondary-foreground: 0 0% 98%; /* #fafafa */
+    --muted: 240 3.7% 15.9%; /* #27272a */
+    --muted-foreground: 240 5% 64.9%; /* #a1a1aa */
     --accent: 14 100% 57%; /* Keep #ff5722 as accent in dark mode */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
+    --accent-foreground: 0 0% 100%; /* white */
+    --destructive: 0 62.8% 30.6%; /* #7f1d1d */
+    --destructive-foreground: 0 0% 98%; /* #fafafa */
+    --border: 240 3.7% 15.9%; /* #27272a */
+    --input: 240 3.7% 15.9%; /* #27272a */
+    --ring: 240 4.9% 83.9%; /* #d4d4d8 */
+
+    /* Chart colors */
+    --chart-1: 220 70% 50%; /* More vibrant in dark mode */
     --chart-2: 340 75% 55%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 160 60% 45%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
+
+    /* Sidebar colors */
+    --sidebar-background: 240 5.9% 10%; /* #18181b */
+    --sidebar-foreground: 240 4.8% 95.9%; /* #f4f4f5 */
+    --sidebar-primary: 224.3 76.3% 48%; /* #3b82f6 */
+    --sidebar-primary-foreground: 0 0% 100%; /* white */
     --sidebar-accent: 14 100% 57%; /* #ff5722 in dark mode */
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent-foreground: 0 0% 100%; /* white */
+    --sidebar-border: 240 3.7% 15.9%; /* #27272a */
+    --sidebar-ring: 217.2 91.2% 59.8%; /* #3b82f6 */
+
+    /* Gray palette - dark mode versions */
+    --gray-50: 240 6% 10%; /* Inverted to dark */
+    --gray-100: 240 5% 15%; /* Darker in dark mode */
+    --gray-200: 240 5% 25%;
+    --gray-300: 240 4% 35%;
+    --gray-400: 240 5% 45%;
+    --gray-500: 240 5% 65%;
+    --gray-600: 240 5% 75%;
+    --gray-700: 240 5% 85%;
+    --gray-800: 240 4% 90%;
+    --gray-900: 240 5% 96%;
+
+    /* Badge colors - dark mode versions */
+    --blue-50: 217 91% 15%; /* Darker but still blue-ish */
+    --blue-100: 217 91% 25%;
+    --blue-600: 217 91% 70%; /* Brighter in dark mode */
+
+    --teal-50: 162 64% 15%;
+    --teal-100: 162 64% 25%;
+    --teal-600: 162 64% 60%;
+
+    --emerald-50: 156 72% 15%;
+    --emerald-100: 156 72% 25%;
+    --emerald-600: 156 72% 60%;
+
+    --purple-50: 271 91% 15%;
+    --purple-100: 271 91% 25%;
+    --purple-600: 271 91% 70%;
+    --purple-800: 271 91% 45%;
+    --purple-900: 271 91% 30%;
   }
 }
 
