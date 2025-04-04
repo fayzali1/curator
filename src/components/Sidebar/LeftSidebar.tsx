@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Search, Grid, Users, MessageSquare } from "lucide-react";
 import Link from "next/link";
+import { SearchModal } from "@/components/SearchModal";
 
 export function LeftSidebar() {
   return (
@@ -22,12 +23,11 @@ export function LeftSidebar() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip="Search">
-                <Link
-                  href="/search"
-                  className="p-2 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center"
-                >
-                  <Search size={24} className="text-gray-500" />
-                </Link>
+                <div className="p-2 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center cursor-pointer">
+                  <SearchModal>
+                    <Search size={24} className="text-gray-500" />
+                  </SearchModal>
+                </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

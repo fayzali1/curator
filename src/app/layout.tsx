@@ -18,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Amazon Boost",
-  description: "Amazon Boost",
+  title: "The Curator",
+  description: "The Curator",
 };
 
 export default function RootLayout({
