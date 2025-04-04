@@ -1,87 +1,65 @@
+"use client";
+
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Volume2 } from "lucide-react";
+import Link from "next/link";
 
-export function ProductGrid() {
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  badges: string[];
+}
+
+interface ProductGridProps {
+  products: Product[];
+}
+
+export function ProductGrid({ products }: ProductGridProps) {
+  const getIconColor = (productId: string) => {
+    // Map product IDs to color schemes for the icons
+    const colorMap: { [key: string]: string } = {
+      quantify: "blue-purple",
+      webify: "pink",
+      supportify: "purple-blue",
+      strategize: "orange",
+      innovate: "colorful",
+      optimize: "pink-white",
+      propertify: "blue-pink",
+      marketify: "pink-blue",
+      techify: "black-red",
+      "code-craft": "black-text",
+      scoope: "blue-gradient",
+      connectify: "pink-gradient",
+      // Add more mappings as needed
+    };
+
+    return colorMap[productId] || "blue-gradient"; // Default color
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-      {/* Row 1 */}
-      <ProductCard
-        name="Quantify"
-        description="AI-driven insights into consumer behavior."
-        iconColor="blue-purple"
-        isNew
-      />
-      <ProductCard
-        name="Webify"
-        description="Revolutionizing web development with simplicity."
-        iconColor="pink"
-      />
-      <ProductCard
-        name="Supportify"
-        description="Redefining customer support with AI for your excellence."
-        iconColor="purple-blue"
-        isHighlight
-      />
-
-      {/* Row 2 */}
-      <ProductCard
-        name="Strategize"
-        description="Your virtual CFO for financial strategies made with ChatGPT."
-        iconColor="orange"
-      />
-      <ProductCard
-        name="Innovate"
-        description="Turn ideas into successful products seamlessly."
-        iconColor="colorful"
-        isSponsored
-      />
-      <ProductCard
-        name="Optimize"
-        description="Efficiency solutions for modern manufacturing."
-        iconColor="pink-white"
-      />
-
-      {/* Row 3 */}
-      <ProductCard
-        name="Propertify"
-        description="Smart real estate management and analytics."
-        iconColor="blue-pink"
-        isNew
-      />
-      <ProductCard
-        name="Marketify"
-        description="Navigate market trends with confidence."
-        iconColor="pink-blue"
-      />
-      <ProductCard
-        name="Techify"
-        description="Cutting-edge tech services for enterprise needs."
-        iconColor="black-red"
-        isSponsored
-      />
-
-      {/* Row 4 */}
-      <ProductCard
-        name="Code Craft"
-        description="Streamlined web design platform for responsive, modern websites."
-        iconColor="black-text"
-      />
-      <ProductCard
-        name="Scoope"
-        description="Simplifying complex data analysis with intuitive visualization tools."
-        iconColor="blue-gradient"
-      />
-      <ProductCard
-        name="Connectify"
-        description="Enhance your customer support with our integrated service suite."
-        iconColor="pink-gradient"
-      />
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          id={product.id}
+          name={product.name}
+          description={product.description}
+          iconColor={getIconColor(product.id)}
+          isNew={product.badges.includes("New")}
+          isSponsored={product.badges.includes("Sponsored")}
+          isHighlight={product.badges.includes("Highlight")}
+        />
+      ))}
     </div>
   );
 }
 
 interface ProductCardProps {
+  id: string;
   name: string;
   description: string;
   iconColor: string;
@@ -91,6 +69,7 @@ interface ProductCardProps {
 }
 
 function ProductCard({
+  id,
   name,
   description,
   iconColor,
@@ -138,11 +117,12 @@ function ProductCard({
       <h3 className="text-lg font-semibold mb-1 text-gray-900">{name}</h3>
       <p className="text-gray-500 text-sm leading-relaxed">{description}</p>
 
-      {/* Read more button with slower transition */}
       <div className="absolute bottom-5 right-5 opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
-        <button className="bg-gray-800 hover:bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-md">
-          Read more
-        </button>
+        <Link href={`/product/${id}`}>
+          <button className="bg-gray-800 hover:bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-md">
+            Read more
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Sidebar,
@@ -36,52 +37,58 @@ import {
   ShoppingBag,
   Globe,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
-// Define the categories data structure
+// Define the categories data structure with proper slugs
 const categories = [
-  { icon: Package, label: "All", active: true, href: "#all" },
-  { icon: BookOpen, label: "AI", active: false, href: "#ai" },
-  {
-    icon: Building,
-    label: "Administration",
-    active: false,
-    href: "#administration",
-  },
-  { icon: BarChart, label: "Analytics", active: false, href: "#analytics" },
-  { icon: ServerCog, label: "APIs", active: false, href: "#apis" },
-  { icon: Bug, label: "Bug Hunt", active: false, href: "#bug-hunt" },
-  { icon: Briefcase, label: "Business", active: false, href: "#business" },
-  { icon: FileText, label: "CMS", active: false, href: "#cms" },
-  {
-    icon: GraduationCap,
-    label: "Education",
-    active: false,
-    href: "#education",
-  },
-  { icon: Code, label: "Developers", active: false, href: "#developers" },
-  { icon: DollarSign, label: "Finance", active: false, href: "#finance" },
-  { icon: Truck, label: "Logistic", active: false, href: "#logistic" },
-  { icon: Newspaper, label: "News", active: false, href: "#news" },
-  { icon: CreditCard, label: "Payments", active: false, href: "#payments" },
-  { icon: Shield, label: "Privacy", active: false, href: "#privacy" },
-  { icon: KeyRound, label: "Security", active: false, href: "#security" },
-  {
-    icon: ShoppingBag,
-    label: "E-commerce",
-    active: false,
-    href: "#e-commerce",
-  },
-  {
-    icon: Globe,
-    label: "International",
-    active: false,
-    href: "#international",
-  },
+  { icon: Package, label: "All", slug: "all" },
+  { icon: BookOpen, label: "AI", slug: "ai" },
+  { icon: Building, label: "Administration", slug: "administration" },
+  { icon: BarChart, label: "Analytics", slug: "analytics" },
+  { icon: ServerCog, label: "APIs", slug: "apis" },
+  { icon: Bug, label: "Bug Hunt", slug: "bug-hunt" },
+  { icon: Briefcase, label: "Business", slug: "business" },
+  { icon: FileText, label: "CMS", slug: "cms" },
+  { icon: GraduationCap, label: "Education", slug: "education" },
+  { icon: Code, label: "Developers", slug: "developers" },
+  { icon: DollarSign, label: "Finance", slug: "finance" },
+  { icon: Truck, label: "Logistic", slug: "logistic" },
+  { icon: Newspaper, label: "News", slug: "news" },
+  { icon: CreditCard, label: "Payments", slug: "payments" },
+  { icon: Shield, label: "Privacy", slug: "privacy" },
+  { icon: KeyRound, label: "Security", slug: "security" },
+  { icon: ShoppingBag, label: "E-commerce", slug: "e-commerce" },
+  { icon: Globe, label: "International", slug: "international" },
 ];
 
-export function CategorySidebar() {
+interface CategorySidebarProps {
+  activeCategory?: string;
+  defaultOpen?: boolean;
+}
+
+export function CategorySidebar({
+  activeCategory = "all",
+  defaultOpen = true,
+}: CategorySidebarProps) {
+  const pathname = usePathname();
+
+  // Check if a category is active
+  const isActive = (slug: string) => {
+    if (activeCategory) {
+      return activeCategory === slug;
+    }
+
+    // For homepage, "All" should be active
+    if (pathname === "/") {
+      return slug === "all";
+    }
+
+    return pathname.includes(`/category/${slug}`);
+  };
+
   return (
-    <SidebarProvider defaultOpen={true}>
+    <SidebarProvider defaultOpen={defaultOpen}>
       <Sidebar collapsible="icon">
         <SidebarHeader>
           <div className="flex justify-between items-center">
@@ -94,7 +101,9 @@ export function CategorySidebar() {
               <span className="text-black">t</span>
               <span className="text-gray-500">c.</span>
             </div>
-            <SidebarTrigger className="flex items-center justify-center w-4 h-4 rounded-full bg-black text-white hover:bg-black/90" />
+            <SidebarTrigger className="flex items-center justify-center w-6 h-6 rounded-full bg-black text-white hover:bg-black/90">
+              <ArrowLeft size={14} />
+            </SidebarTrigger>
           </div>
         </SidebarHeader>
 
@@ -106,26 +115,31 @@ export function CategorySidebar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 {categories.map((category) => (
-                  <SidebarMenuItem key={category.label}>
+                  <SidebarMenuItem key={category.slug}>
                     <SidebarMenuButton asChild>
-                      <a
-                        href={category.href}
-                        className={`flex items-center gap-3 rounded-md ${
-                          category.active
+                      <Link
+                        href={
+                          category.slug === "all"
+                            ? "/"
+                            : `/category/${category.slug}`
+                        }
+                        className={`flex items-center gap-3 px-4 py-2 rounded-md ${
+                          isActive(category.slug)
                             ? "bg-gray-100 hover:bg-gray-100"
                             : "hover:bg-gray-50"
                         }`}
                       >
-                        <category.icon size={24} />
-
+                        <category.icon size={24} className="text-gray-400" />
                         <span
-                          className={`text-sm  ${
-                            category.active ? "text-gray-900" : "text-gray-500"
+                          className={`text-sm ${
+                            isActive(category.slug)
+                              ? "text-gray-900"
+                              : "text-gray-500"
                           }`}
                         >
                           {category.label}
                         </span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -140,7 +154,7 @@ export function CategorySidebar() {
               <SidebarMenuButton asChild>
                 <a
                   href="#submit"
-                  className="w-full bg-black text-white hover:bg-gray-800 !rounded-full "
+                  className="w-full bg-black text-white hover:bg-gray-800 !rounded-full"
                 >
                   <Plus size={24} />
                   <span>Submit Your Product</span>
