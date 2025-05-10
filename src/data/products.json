@@ -1,0 +1,141 @@
+{
+  "products": [
+    {
+      "id": "curatify",
+      "name": "Curatify",
+      "description": "Your virtual CFO for financial strategies made with ChatGPT.",
+      "icon": "/images/icons/curatify.png",
+      "category": "Finance",
+      "badges": []
+    },
+    {
+      "id": "venture-vault",
+      "name": "Venture Vault",
+      "description": "Secure business planning and strategic management software.",
+      "icon": "/images/icons/venture-vault.png",
+      "category": "Business",
+      "badges": ["Sponsored"]
+    },
+    {
+      "id": "launch-pad",
+      "name": "Launch Pad",
+      "description": "All-in-one toolkit for entrepreneurs to kickstart their business journey.",
+      "icon": "/images/icons/launch-pad.png",
+      "category": "Business",
+      "badges": []
+    },
+    {
+      "id": "quantify",
+      "name": "Quantify",
+      "description": "AI-driven insights into consumer behavior.",
+      "icon": "/images/icons/quantify.png",
+      "category": "Analytics",
+      "badges": ["New"]
+    },
+    {
+      "id": "webify",
+      "name": "Webify",
+      "description": "Revolutionizing web development with simplicity.",
+      "icon": "/images/icons/webify.png",
+      "category": "Developers",
+      "badges": []
+    },
+    {
+      "id": "supportify",
+      "name": "Supportify",
+      "description": "Redefining customer support with AI for your excellence.",
+      "icon": "/images/icons/supportify.png",
+      "category": "AI",
+      "badges": ["Highlight"]
+    },
+    {
+      "id": "strategize",
+      "name": "Strategize",
+      "description": "Your virtual CFO for financial strategies made with ChatGPT.",
+      "icon": "/images/icons/strategize.png",
+      "category": "Finance",
+      "badges": []
+    },
+    {
+      "id": "innovate",
+      "name": "Innovate",
+      "description": "Turn ideas into successful products seamlessly.",
+      "icon": "/images/icons/innovate.png",
+      "category": "Business",
+      "badges": ["Sponsored"]
+    },
+    {
+      "id": "optimize",
+      "name": "Optimize",
+      "description": "Efficiency solutions for modern manufacturing.",
+      "icon": "/images/icons/optimize.png",
+      "category": "Logistic",
+      "badges": []
+    },
+    {
+      "id": "propertify",
+      "name": "Propertify",
+      "description": "Smart real estate management and analytics.",
+      "icon": "/images/icons/propertify.png",
+      "category": "Analytics",
+      "badges": ["New"]
+    },
+    {
+      "id": "marketify",
+      "name": "Marketify",
+      "description": "Navigate market trends with confidence.",
+      "icon": "/images/icons/marketify.png",
+      "category": "Business",
+      "badges": []
+    },
+    {
+      "id": "techify",
+      "name": "Techify",
+      "description": "Cutting-edge tech services for enterprise needs.",
+      "icon": "/images/icons/techify.png",
+      "category": "APIs",
+      "badges": ["Sponsored"]
+    },
+    {
+      "id": "code-craft",
+      "name": "Code Craft",
+      "description": "Streamlined web design platform for responsive, modern websites.",
+      "icon": "/images/icons/code-craft.png",
+      "category": "Developers",
+      "badges": []
+    },
+    {
+      "id": "scoope",
+      "name": "Scoope",
+      "description": "Simplifying complex data analysis with intuitive visualization tools.",
+      "icon": "/images/icons/scoope.png",
+      "category": "Analytics",
+      "badges": []
+    },
+    {
+      "id": "connectify",
+      "name": "Connectify",
+      "description": "Enhance your customer support with our integrated service suite.",
+      "icon": "/images/icons/connectify.png",
+      "category": "CMS",
+      "badges": []
+    }
+  ],
+  "badges": {
+    "Sponsored": {
+      "text": "Sponsored",
+      "backgroundColor": "bg-blue-100",
+      "textColor": "text-blue-600"
+    },
+    "New": {
+      "text": "New",
+      "backgroundColor": "bg-emerald-100",
+      "textColor": "text-emerald-600"
+    },
+    "Highlight": {
+      "text": "Highlight",
+      "backgroundColor": "bg-purple-100",
+      "textColor": "text-purple-600"
+    }
+  }
+}
